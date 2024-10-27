@@ -1,0 +1,15 @@
+--> isinstance() function is used to check an object belongs to a particular class
+
+--> In Python, the '**' operator is used for dictionary unpacking. It is used to unpack the contents of a dictionary and pass them as keyword arguments to a function or to merge two dictionaries.
+--> The python object() returns an empty object. It is a base for all the classes and holds the built-in properties and methods which are default for all the classes. 
+--> Python dir() function returns the list of names in the current local scope.
+
+	->python = object()
+	print(type(python))  
+	print(dir(python))
+
+	->  <class 'object'>
+		['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', 
+		'__getattribute__', '__gt__', '__hash__', '__init__', '__le__', '__lt__', '__ne__', 
+		'__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', 
+		'__str__', '__subclasshook__']

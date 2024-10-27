@@ -1,0 +1,193 @@
+**SOLID Principal**
+
+1)Single Responsibility Principle (SRP)
+---> This principle states that a class should have only one reason to change. It means that a class should do only one thing and do it well
+---> A class should have only one reason to change. In Python, this means that each class should have a single responsibility or task to perform, and should not be responsible for multiple unrelated tasks.
+---> iss me car aur music player do no alag alag hey kucha lena dena nai hey 
+            
+    class Car:
+    def __init__(self, brand, model, color):
+        self.brand = brand
+        self.model = model
+        self.color = color
+        self.speed = 0
+        
+    def accelerate(self, amount):
+        self.speed += amount
+        
+    def brake(self, amount):
+        self.speed -= amount
+        
+    def steer(self, direction):
+        # Code for steering
+        
+    def get_speed(self):
+        return self.speed
+
+
+class MusicPlayer:
+    def __init__(self, music):
+        self.music = music
+        
+    def play(self):
+        # Code for playing music
+
+2)Open/Closed Principle (OCP)
+---> A class should be open for extension but closed for modification. In Python, this can be achieved by using inheritance or composition to add new functionality to a class, rather than modifying its existing code
+---> hamanre pass class hey use bina modificatin kare ne ki bajaye dusare calss me ham wo class ko inharit karake modifiacatin kar sakte hey 
+
+    class Car:
+    def __init__(self, brand, model, color):
+        self.brand = brand
+        self.model = model
+        self.color = color
+        self.speed = 0
+        
+    def accelerate(self, amount):
+        self.speed += amount
+        
+    def brake(self, amount):
+        self.speed -= amount
+        
+    def steer(self, direction):
+        # Code for steering
+        
+    def get_speed(self):
+        return self.speed
+        
+    def get_price(self):
+        return 20000
+        
+
+class ElectricCar(Car):
+    def __init__(self, brand, model, color, battery_capacity):
+        super().__init__(brand, model, color)
+        self.battery_capacity = battery_capacity
+        
+    def get_price(self):
+        return self.battery_capacity * 500
+        
+class GasCar(Car):
+    def __init__(self, brand, model, color, fuel_efficiency):
+        super().__init__(brand, model, color)
+        self.fuel_efficiency = fuel_efficiency
+        
+    def get_price(self):
+        return self.fuel_efficiency * 500
+
+
+3)Liskov Substitution Principle (LSP)
+--->Subtypes should be substitutable for their base types. In Python, this means that subclasses should be able to be used in place of their parent classes without causing any issues or unexpected behavior.
+---> ak class me jo method hey usako dusare calss me in herite karake wo class ki method change kar sakate hey
+
+class Vehicle:
+    def start(self):
+        pass
+
+    def stop(self):
+        pass
+
+
+class Car(Vehicle):
+    def start(self):
+        print("Starting car...")
+
+    def stop(self):
+        print("Stopping car...")
+
+
+class Bicycle(Vehicle):
+    def start(self):
+        print("Starting bicycle...")
+
+    def stop(self):
+        print("Stopping bicycle...")
+        
+def test_vehicle(vehicle):
+    vehicle.start()
+    vehicle.stop()
+
+vehicle = Vehicle()
+car = Car()
+bicycle = Bicycle()
+
+test_vehicle(vehicle)   # Output: None
+test_vehicle(car)       # Output: "Starting car..." "Stopping car..."
+test_vehicle(bicycle)   # Output: "Starting bicycle..." "Stopping bicycle..."
+
+4)Interface Segregation Principle (ISP)
+---> Clients should not be forced to depend on interfaces they do not use. In Python, this means that interfaces should be designed to be as small and specific as possible, so that clients only have to implement the methods they need.
+---> sabhi ke class alag hote hey aur ak dusare class ki method ak dusare par affect nai karati
+
+class BasicCar:
+    def accelerate(self, amount):
+        self.speed += amount
+        
+    def brake(self, amount):
+        self.speed -= amount
+        
+    def steer(self, direction):
+        # Code for steering
+        
+    def get_speed(self):
+        return self.speed
+
+class SportsCar:
+    def accelerate(self, amount):
+        self.speed += amount
+        
+    def brake(self, amount):
+        self.speed -= amount
+        
+    def steer(self, direction):
+        # Code for steering
+        
+    def get_speed(self):
+        return self.speed
+    
+    def launch_control(self):
+        # Code for launch control feature
+        
+    def paddle_shifters(self):
+        # Code for paddle shifters feature
+
+class ElectricCar:
+    def accelerate(self, amount):
+        # Code for electric motor acceleration
+        
+    def brake(self, amount):
+        # Code for electric motor braking
+        
+    def steer(self, direction):
+        # Code for steering
+        
+    def get_speed(self):
+        # Code for getting electric motor speed
+        
+    def charge_battery(self):
+        # Code for charging battery feature
+        
+    def regenerative_braking(self):
+        # Code for regenerative braking feature
+
+
+5)Dependency Inversion Principle (DIP)
+---> High-level modules should not depend on low-level modules. Both should depend on abstractions. In Python, this means that classes should depend on abstract classes or interfaces, rather than concrete implementations, to allow for easier swapping of dependencies and better code flexibility.
+---> koi bhi class ki method ko koi class me method inject(call) kar sakate hey
+
+    class Engine:
+    def start(self):
+        # Code to start the engine
+        
+    def stop(self):
+        # Code to stop the engine
+
+    class Car:
+        def __init__(self, engine: Engine):
+            self.engine = engine
+            
+        def start(self):
+            self.engine.start()
+            
+        def stop(self):
+            self.engine.stop()

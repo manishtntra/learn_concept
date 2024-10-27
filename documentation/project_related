@@ -1,0 +1,20 @@
+cleaning project
+learn telegram ma env file -- env file not their
+telegram search bot -- local_env
+travel_search_bot_telegram -- local_env
+
+pg_dump -h localhost -p 5432 -U postgres akshit_dump > manish_dump.sql
+
+Load sql data
+psql -h localhost -U postgres -p 5432 manish_dump < /home/dell/Downloads/setu_dummy_db.sql
+
+**for polish incentive report related branch**
+fix/polish_incentive_report_query_related_changes
+
+**all user for assortment and planning**
+Assoter: uttamast Shairu@12345
+HOD : assorterhead  Shairu@12345
+OM BU HEad : uttamom1234
+Single Packet - aman1234 Aman@1234
+Videography : employee1 Shairu@1234
+Marker :  markerp2 Shairu@1234

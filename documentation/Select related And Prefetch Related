@@ -1,0 +1,24 @@
+Select related And Prefetch Related
+
+class Auther:
+	name:a
+
+class Book:
+	name:b
+	auther:(Auther)
+
+Select related:
+	Book.objects.select_related('auther').all()
+
+Prefetch Related:
+	Auther.objects.prefetch_related('book_set').all()
+
+
+Colab notebook *for execution*
+
+http://weiyuli.xyz/Sin3DGen/
+https://github.com/takuya-nft/blender-3dgenerative-tool
+https://github.com/lukasmach/insight3d
+https://github.com/openai/point-e
+https://github.com/openai/shap-e
+https://github.com/topics/image-generation

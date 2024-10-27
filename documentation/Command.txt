@@ -1,0 +1,96 @@
+Command
+
+*django in ipyhon*
+python manage.py shell -i ipython
+
+*dump_data*
+pg_dump -h localhost -p 5432 -U postgres akshit_dump > manish_dump.sql
+
+*Load sql data*
+psql -h localhost -U postgres -p 5432 16_06_24_qa_db < /home/tntra/Downloads/setu_qa_dump_6_june_24.sql
+
+*all table filed rename and changes*
+import os
+import django
+import inspect #get information about live objects such as modules, classes, methods, functions, tracebacks, frame objects, and code objects
+from django.db.models import Model
+from src.core.models import masters_management
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Setu.settings")
+django.setup()
+
+
+def test():
+    for i in inspect.getmembers(masters_management):
+        if inspect.isclass(i[1]) and issubclass(i[1], Model) and hasattr(i[1], 'description'):
+            print(i[0], ":: ", i[1].objects.filter(description__isnull=True).count())
+            i[1].objects.filter(description__isnull=True).update(description="")
+test()
+
+*dublicate data delete command*
+
+python manage.py shell
+from src.core.models import MiningDetailsMaster
+mining_list_ids=MiningDetailsMaster.objects.all().distinct("name").values_list("id",flat=True)
+MiningDetailsMaster.objects.exclude(id__in=mining_list_ids).delete()
+
+*For Many to Many Specific Column Unique Validation * 
+def validate(self, attrs):
+        assortment_type_ids = [assortment_type.id for assortment_type in attrs.get('assortment_type', [])]
+        assortment_type_ids.sort()
+        assortment_ids = ",".join(map(str, assortment_type_ids))
+        assortment_grade_data = (AssortmentGradeThrough.objects.values("assortment_grade").annotate(
+            num_grade=StringAgg(Cast("assortment_type_id", CharField()), delimiter=",")).filter(
+            num_grade=assortment_ids).exists())
+        if assortment_grade_data:
+            raise ValidationException({'assortment_type': AssortmentGradeMasterMessages.ASSORTMENT_TYPE_ALREADY_EXISTS})
+        return attrs
+
+** Git Command**
+git clean -fd --> remove unstage file
+git checkout -- . --> swich other branch clean directory
+
+
+** Ubuntu Terminal Command **
+ Window+A --> open all app
+ ctrl+shift+alt+j --> ak sathe jayada word select ke liye
+ 
+** migration rename **
+python manage.py makemigrations --name  migration name
+
+**For HTML Report**
+pytest src/hr_management --html=hr_management.html
+
+
+** Change User Name Password **
+sudo su
+
+** inspectdb**
+python manage.py inspectdb sales_diamond_histories
+
+**docker command**
+docker ps -a
+docker build -t my-docker-project .
+docker run --network host my-docker-project --> for network mode host
+
+**docker compose**
+docker-compose up --build
+docker-compose up
+docker-compose down
+docker-compose run backend python manage.py migrate    #here backend is container in compose file
+docker-compose run backend python manage.py createsuperuser
+docker-compose run backend python manage.py shell
+docker-compose logs
+docker-compose logs backend
+docker-compose restart
+docker-compose ps
+docker-compose ps -a
+
+** celery task and service in breakpoint**
+from celery.contrib import rdb 
+        rdb.set_trace()
+
+**postgres psql sort cut command**
+python manage.py dbshell    -->direct move in DB
+
+**ngrok**
+ssh -R 80:localhost:8000 serveo.net
