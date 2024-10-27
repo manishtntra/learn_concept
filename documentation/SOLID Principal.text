@@ -34,7 +34,7 @@ class MusicPlayer:
 
 2)Open/Closed Principle (OCP)
 ---> A class should be open for extension but closed for modification. In Python, this can be achieved by using inheritance or composition to add new functionality to a class, rather than modifying its existing code
----> hamanre pass class hey use bina modificatin kare ne ki bajaye dusare calss me ham wo class ko inharit karake modifiacatin kar sakte hey 
+---> hamare pass class hey use bina modificatin kare ne ki bajaye dusare calss me ham wo class ko inharit karake modifiacatin kar sakte hey
 
     class Car:
     def __init__(self, brand, model, color):
