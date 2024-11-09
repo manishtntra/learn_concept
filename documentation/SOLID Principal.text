@@ -78,7 +78,7 @@ class GasCar(Car):
 
 3)Liskov Substitution Principle (LSP)
 --->Subtypes should be substitutable for their base types. In Python, this means that subclasses should be able to be used in place of their parent classes without causing any issues or unexpected behavior.
----> ak class me jo method hey usako dusare calss me in herite karake wo class ki method change kar sakate hey
+---> ak class me jo method hey usako dusare calss me inherite karake wo class ki method change kar sakate hey
 
 class Vehicle:
     def start(self):

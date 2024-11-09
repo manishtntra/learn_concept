@@ -1,0 +1,31 @@
+version: "3.0"
+
+services:
+  db:
+    container_name: db_cnt
+    image: postgres:13
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_DB: "docker_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_PORT: 5432
+      PGDATA: /var/lib/postgresql/data/pgdata
+    network_mode: host
+    volumes:
+      - /postgres_data:/var/lib/postgresql/data/pgdata
+
+  backend:
+    container_name: "test_project"
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/Setu
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    network_mode: host
+volumes:
+  postgres_data:
