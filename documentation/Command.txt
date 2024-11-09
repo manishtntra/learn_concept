@@ -76,6 +76,7 @@ docker run --network host my-docker-project --> for network mode host
 docker-compose up --build
 docker-compose up
 docker-compose down
+docker-compose run backend /bin/bash #bash open karane ke liye
 docker-compose run backend python manage.py migrate    #here backend is container in compose file
 docker-compose run backend python manage.py createsuperuser
 docker-compose run backend python manage.py shell
@@ -84,6 +85,7 @@ docker-compose logs backend
 docker-compose restart
 docker-compose ps
 docker-compose ps -a
+docker system prune -a --volumes #ak sathe sabhi image delet karane ke liye
 
 ** celery task and service in breakpoint**
 from celery.contrib import rdb 
